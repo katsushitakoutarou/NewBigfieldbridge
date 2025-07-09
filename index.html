@@ -783,7 +783,7 @@
             const container = (type === 'edit') ? editOptionsContainer : newOptionsContainer;
 
             const optionDiv = document.createElement('div');
-            optionDiv.className = 'flex flex-col md:flex-row gap-2 mb-2 p-3 border border-gray-200 rounded-lg bg-white';
+            optionDiv.className = 'option-row flex flex-col md:flex-row gap-2 mb-2 p-3 border border-gray-200 rounded-lg bg-white';
             
             const iconSelectorId = `icon-selector-${Date.now()}-${Math.random()}`;
 
@@ -869,7 +869,7 @@
             const options = [];
 
             if (!isResult) { // Only collect options if it's not a result node
-                const optionElements = editOptionsContainer.querySelectorAll('.flex');
+                const optionElements = editOptionsContainer.querySelectorAll('.option-row');
                 optionElements.forEach(optionDiv => {
                     const text = optionDiv.querySelector('.option-text').value.trim();
                     const next = optionDiv.querySelector('.option-next').value.trim();
@@ -921,7 +921,7 @@
             const newOptions = [];
 
             if (!newIsResult) { // Only collect options if it's not a result node
-                const newOptionElements = newOptionsContainer.querySelectorAll('.flex');
+                const newOptionElements = newOptionsContainer.querySelectorAll('.option-row');
                 newOptionElements.forEach(optionDiv => {
                     const text = optionDiv.querySelector('.option-text').value.trim();
                     const next = optionDiv.querySelector('.option-next').value.trim();
