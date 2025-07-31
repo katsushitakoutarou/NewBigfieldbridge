@@ -1,0 +1,156 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+button {
+    background-color: transparent;
+    background-image: none;
+    cursor: pointer;
+}
+button:focus {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+.hidden {
+    display: none;
+}
+.flex {
+    display: flex;
+}
+.items-center {
+    align-items: center;
+}
+.justify-center {
+    justify-content: center;
+}
+.gap-2 {
+    gap: 0.5rem;
+}
+.gap-4 {
+    gap: 1rem;
+}
+.rounded-lg {
+    border-radius: .5rem;
+}
+.rounded-2xl {
+    border-radius: 1rem;
+}
+.border-2 {
+    border-width: 2px;
+}
+.bg-white {
+    background-color: #fff;
+}
+.bg-gray-50 {
+    background-color: #f9fafb;
+}
+.hover\:bg-gray-100:hover {
+    background-color: #f3f4f6;
+}
+.border-gray-300 {
+    border-color: #d1d4d7;
+}
+.p-6 {
+    padding: 1.5rem;
+}
+.px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.py-3 {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+}
+.text-center {
+    text-align: center;
+}
+.font-semibold {
+    font-weight: 600;
+}
+.font-bold {
+    font-weight: 700;
+}
+.text-white {
+    color: #fff;
+}
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+.text-gray-800 {
+    color: #1f2937;
+}
+.text-gray-600 {
+    color: #4b5563;
+}
+.flex-1 {
+    flex: 1 1 0%;
+}
+.flex-col {
+    flex-direction: column;
+}
+.min-h-screen {
+    min-height: 100vh;
+}
+.min-h-\[64px\] {
+    min-height: 64px;
+}
+.w-full {
+    width: 100%;
+}
+.max-w-2xl {
+    max-width: 42rem;
+}
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+.mt-8 {
+    margin-top: 2rem;
+}
+.mb-2 {
+    margin-bottom: .5rem;
+}
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
+}
+.shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
+}
+#q, #rt {
+    white-space: pre-line;
+}
+@media(min-width:768px) {
+    .md\:p-8 {
+        padding: 2rem;
+    }
+    .md\:text-2xl {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+    .md\:text-3xl {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+    }
+    .md\:w-auto {
+        width: auto;
+    }
+    .md\:flex-row {
+        flex-direction: row;
+    }
+}
+/* For draggable contacts */
+.dragging {
+    opacity: 0.5;
+    border: 2px dashed #009945;
+}
