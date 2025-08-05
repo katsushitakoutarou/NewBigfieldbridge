@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>熱中症フローチャート＆連絡先</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- PWA: manifest.jsonのリンク -->
+    <link rel="manifest" href="manifest.json">
+    <!-- PWA: Service Workerの登録 -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(registration => {
+              console.log('Service Worker registered: ', registration);
+            })
+            .catch(error => {
+              console.log('Service Worker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-2xl mx-auto p-6 md:p-8 bg-white rounded-2xl shadow-lg text-center">
+        <!-- Header with Logo and Language Selector -->
+        <div class="flex justify-between items-center mb-6">
+            <img src="マーク+ロゴタイプ（英+和）.jpg" alt="Company Logo" class="h-12 md:h-16">
+            <div class="relative">
+                <select id="languageSelector" class="bg-gray-200 border-2 border-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-300 focus:outline-none">
+                    <option value="ja">日本語</option>
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="vi">Tiếng Việt</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Heat-Danger-Display Area -->
+        <div id="heatDangerContainer" class="mb-6 p-4 bg-gray-100 rounded-lg shadow-md text-center">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2" data-lang-key="ui.heatDangerTitle"></h3>
+            <p id="heatDangerStatus" class="text-2xl font-bold" data-lang-key="ui.heatDangerLoading"></p>
+            <p id="heatDangerDetail" class="text-sm text-gray-600 mt-1"></p>
+            <div id="weatherDetails" class="text-sm text-gray-700 mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div id="wbgtDisplay" class="p-2 bg-gray-200 rounded-lg"></div>
+                <div id="tempDisplay" class="p-2 bg-gray-200 rounded-lg"></div>
+                <div id="humidityDisplay" class="p-2 bg-gray-200 rounded-lg"></div>
+            </div>
+            <button id="refreshHeatDangerBtn" class="mt-4 bg-gray-400 text-white font-semibold py-1 px-3 rounded-lg shadow-sm hover:bg-gray-500 text-sm" data-lang-key="ui.refreshButton"></button>
+        </div>
+        <!-- Mode switching buttons -->
+        <div class="flex justify-center gap-4 mb-6">
+            <button id="flowchartModeBtn" class="bg-[#009945] text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-[#008a3e]" data-lang-key="ui.flowchartModeButton"></button>
+            <button id="contactsModeBtn" class="bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-300" data-lang-key="ui.contactsModeButton"></button>
+            <button id="questionEditorModeBtn" class="bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-300" data-lang-key="ui.questionEditorModeButton"></button>
+            <button id="preventionModeBtn" class="bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-300" data-lang-key="ui.preventionModeButton"></button>
+        </div>
+
+        <!-- Flowchart mode container -->
+        <div id="flowchartContainer">
+            <div id="c">
+                <div class="mb-6">
+                    <h2 id="q" class="text-xl md:text-2xl font-semibold text-gray-800 min-h-[64px] flex items-center justify-center"></h2>
+                </div>
+                <div id="o" class="flex flex-col md:flex-row gap-4 justify-center"></div>
+            </div>
+            <div id="r" class="hidden">
+                <h2 class="text-lg font-semibold text-gray-600 mb-2" data-lang-key="ui.resultSuggestion"></h2>
+                <p id="rt" class="text-2xl md:text-3xl font-bold text-[#009945] p-6 bg-[rgba(0,153,69,0.1)] rounded-lg"></p>
+
+                <!-- New contact display area for result screen -->
+                <div id="resultContacts" class="mt-6 p-4 bg-gray-100 rounded-lg text-left">
+                    <h3 class="font-semibold text-gray-700 mb-2" data-lang-key="ui.resultContactsTitle"></h3>
+                    <ul id="resultContactList" class="list-disc list-inside text-gray-800">
+                        <!-- Contacts will be dynamically added here -->
+                    </ul>
+                    <p id="noResultContactsMessage" class="text-gray-600 text-sm mt-2 hidden" data-lang-key="ui.noResultContactsMessage"></p>
+                </div>
+
+                <!-- Disclaimer for results -->
+                <div class="mt-6 pt-4 border-t border-gray-200 text-left">
+                    <p class="text-sm text-red-700 font-bold" data-lang-key="ui.resultDisclaimerTitle"></p>
+                    <p class="text-xs text-gray-700 mt-2" data-lang-key="ui.resultDisclaimerText"></p>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-4 justify-center mt-8">
+                    <button id="rs" class="w-full md:w-auto bg-[#009945] text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#008a3e]" data-lang-key="ui.restartButton"></button>
+                    <button id="endBtn" class="w-full md:w-auto bg-gray-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-gray-700" data-lang-key="ui.endButton"></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacts mode container -->
+        <div id="contactsContainer" class="hidden">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6" data-lang-key="ui.contactsTitle"></h2>
+
+            <!-- Contact addition form -->
+            <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4" data-lang-key="ui.addNewContactTitle"></h3>
+                <input type="text" id="contactName" class="w-full p-3 mb-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#009945]" data-lang-placeholder-key="ui.contactNamePlaceholder">
+                <input type="tel" id="contactPhone" class="w-full p-3 mb-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#009945]" data-lang-placeholder-key="ui.contactPhonePlaceholder">
+                <button id="addContactBtn" class="w-full bg-[#009945] text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#008a3e]" data-lang-key="ui.addContactButton"></button>
+            </div>
+
+            <!-- Contact list -->
+            <div id="contactList" class="text-left">
+                <!-- Contacts will be dynamically added here -->
+                <p id="noContactsMessage" class="text-gray-600" data-lang-key="ui.noContactsMessage"></p>
+            </div>
+        </div>
+
+        <!-- Question Editor mode container -->
+        <div id="questionEditorContainer" class="hidden text-left">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6" data-lang-key="ui.editQuestionTitle"></h2>
+
+            <!-- Flowchart management buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8 p-6 bg-gray-100 rounded-lg shadow-md">
+                <button id="exportFlowchartBtn" class="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-700" data-lang-key="ui.exportFlowchartButton"></button>
+                <input type="file" id="importFlowchartFile" accept=".json" class="hidden">
+                <button id="importFlowchartBtn" class="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-700" data-lang-key="ui.importFlowchartButton"></button>
+                <button id="resetFlowchartBtn" class="bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-red-600" data-lang-key="ui.resetDataButton"></button>
+            </div>
+
+
+            <!-- Select Question for Editing -->
+            <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4" data-lang-key="ui.editExistingQuestionTitle"></h3>
+                <select id="selectQuestionToEdit" class="w-full p-3 mb-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#009945]">
+                    <option value="" data-lang-key="ui.selectQuestionPlaceholder"></option>
+                </select>
+
+                <div id="editQuestionForm" class="hidden">
+                    <label for="editQuestionId" class="block text-gray-700 text-sm font-bold mb-2" data-lang-key="ui.questionIdLabel"></label>
+                    <input type="text" id="editQuestionId" class="w-full p-3 mb-4 bg-gray-200 border-2 border-gray-300 rounded-lg cursor-not-allowed" readonly>
+
+                    <label for="editQuestionText" class="block text-gray-700 text-sm font-bold mb-2" data-lang-key="ui.questionTextLabel"></label>
+                    <textarea id="editQuestionText" rows="4" class="w-full p-3 mb-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#009945]"></textarea>
+
+                    <div class="mb-4">
+                        <input type="checkbox" id="editIsResultCheckbox" class="mr-2">
+                        <label for="editIsResultCheckbox" class="text-gray-700 font-semibold" data-lang-key="ui.isResultNodeLabel"></label>
+                    </div>
+
+                    <div id="editOptionsContainer">
+                        <h4 class="font-semibold text-gray-700 mb-2" data-lang-key="ui.optionsLabel"></h4>
+                        <!-- Options will be dynamically added here -->
+                    </div>
+                    <button id="addOptionBtn" class="bg-gray-400 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-500 mt-4" data-lang-key="ui.addOptionButton"></button>
+                    <button id="deleteQuestionBtn" class="bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-red-600 mt-4 ml-2" data-lang-key="ui.deleteQuestionButton"></button>
+                    <button id="saveEditedQuestionBtn" class="w-full bg-[#009945] text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#008a3e] mt-6" data-lang-key="ui.saveQuestionButton"></button>
+                </div>
+            </div>
+
+            <!-- Add New Question Form -->
+            <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4" data-lang-key="ui.addNewQuestionTitle"></h3>
+                <label for="newQuestionId" class="block text-gray-700 text-sm font-bold mb-2" data-lang-key="ui.newQuestionIdLabel"></label>
+                <input type="text" id="newQuestionId" class="w-full p-3 mb-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#009945]" data-lang-placeholder-key="ui.newQuestionIdPlaceholder">
+
+                <label for="newQuestionText" class="block text-gray-700 text-sm font-bold mb-2" data-lang-key="ui.questionTextLabel"></label>
+                <textarea id="newQuestionText" rows="4" class="w-full p-3 mb-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#009945]" data-lang-placeholder-key="ui.newQuestionTextPlaceholder"></textarea>
+
+                <div class="mb-4">
+                    <input type="checkbox" id="newIsResultCheckbox" class="mr-2">
+                    <label for="newIsResultCheckbox" class="text-gray-700 font-semibold" data-lang-key="ui.isResultNodeLabel"></label>
+                </div>
+
+                <div id="newOptionsContainer">
+                    <h4 class="font-semibold text-gray-700 mb-2" data-lang-key="ui.optionsLabel"></h4>
+                    <!-- New options will be dynamically added here -->
+                </div>
+                <button id="addNewOptionBtn" class="bg-gray-400 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-500 mt-4" data-lang-key="ui.addOptionButton"></button>
+                <button id="saveNewQuestionBtn" class="w-full bg-[#009945] text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-[#008a3e] mt-6" data-lang-key="ui.saveNewQuestionButton"></button>
+            </div>
+
+            <!-- Reorder Questions -->
+            <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4" data-lang-key="ui.reorderQuestionsTitle"></h3>
+                <ul id="reorderQuestionList" class="space-y-2">
+                    <!-- Questions will be dynamically added here for reordering -->
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Main Disclaimer -->
+        <div id="preventionContainer" class="hidden text-left">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6" data-lang-key="ui.preventionTitle"></h2>
+            <div class="space-y-6 text-gray-700">
+                <div>
+                    <h3 class="text-xl font-bold text-[#009945] mb-2" data-lang-key="ui.prevention1Title"></h3>
+                    <p data-lang-key="ui.prevention1Text"></p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#009945] mb-2" data-lang-key="ui.prevention2Title"></h3>
+                    <p data-lang-key="ui.prevention2Text"></p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#009945] mb-2" data-lang-key="ui.prevention3Title"></h3>
+                    <p data-lang-key="ui.prevention3Text"></p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#009945] mb-2" data-lang-key="ui.prevention4Title"></h3>
+                    <p data-lang-key="ui.prevention4Text"></p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#009945] mb-2" data-lang-key="ui.prevention5Title"></h3>
+                    <p data-lang-key="ui.prevention5Text"></p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#009945] mb-2" data-lang-key="ui.prevention6Title"></h3>
+                    <p data-lang-key="ui.prevention6Text"></p>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-xs text-gray-500 mt-8 text-left" data-lang-key="ui.mainDisclaimer"></p>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
