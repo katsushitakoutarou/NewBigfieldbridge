@@ -1,0 +1,154 @@
+{
+  "appName": "中暑流程图和联系方式",
+  "flowchart": {
+    "start": {
+      "question": "您有中暑症状吗？\n例如：头晕、昏厥、肌肉酸痛、肌肉僵硬、大量出汗、头痛、恶心、呕吐、疲劳、虚脱、意识模糊、抽搐、肢体运动障碍、体温过高或其他异常.",
+      "options": [
+        { "text": "有", "next": "symptoms_yes", "icon": "good.jpg" },
+        { "text": "没有", "next": "symptoms_no", "icon": "bad.jpg" }
+      ]
+    },
+    "symptoms_yes": {
+      "question": "患者能回应呼叫吗？",
+      "options": [
+        { "text": "能", "next": "responds_yes", "icon": "good.jpg" },
+        { "text": "不能", "next": "responds_no", "icon": "bad.jpg" },
+        { "text": "模糊", "next": "responds_vague", "icon": "confused.jpg" }
+      ]
+    },
+    "responds_no": {
+      "isResult": true,
+      "question": "1. 立即呼叫救护车.\n2. 移至阴凉处，解开衣物，给身体降温.\n3. 在严重的情况下，给患者浇水，注意不要让他们溺水，并采取一切必要手段给他们降温."
+    },
+    "symptoms_no": {
+      "isResult": true,
+      "question": "如果您感觉自己可能中暑了，请立即给身体降温并休息."
+    },
+    "responds_yes": {
+      "question": "移至阴凉处后，患者能自己喝水吗？",
+      "options": [
+        { "text": "能，可以自己喝水", "next": "can_drink", "icon": "good.jpg" },
+        { "text": "不能，无法自己喝水", "next": "responds_vague", "icon": "bad.jpg" }
+      ]
+    },
+    "responds_vague": {
+      "isResult": true,
+      "question": "1. 考虑呼叫救护车，原则上应前往医疗机构.\n2. 移至阴凉处，解开衣物，给身体降温."
+    },
+    "can_drink": {
+      "question": "安静休息，当天停止工作.\n*不要让患者独处.每隔几分钟检查一次他们的情况.\n他们的情况在好转吗？",
+      "options": [
+        { "text": "是的，在好转", "next": "go_home", "icon": "good.jpg" },
+        { "text": "没有变化或恶化", "next": "call_ambulance", "icon": "bad.jpg" }
+      ]
+    },
+    "call_ambulance": {
+      "isResult": true,
+      "question": "高度怀疑中暑.请前往医疗机构."
+    },
+    "go_home": {
+      "isResult": true,
+      "question": "今天不要勉强自己.回家休息.注意安全！"
+    }
+  },
+  "contacts": [
+    { "name": "甲田收", "phone": "080-8986-0443" },
+    { "name": "三户内科", "phone": "086-229-3331" }
+  ],
+  "ui": {
+    "heatDangerTitle": "今日中暑风险",
+    "heatDangerLoading": "正在获取信息...",
+    "refreshButton": "刷新",
+    "flowchartModeButton": "流程图",
+    "contactsModeButton": "联系方式",
+    "questionEditorModeButton": "编辑问题",
+    "preventionModeButton": "预防",
+    "resultSuggestion": "我们给您的建议是...",
+    "resultContactsTitle": "已注册的紧急联系人：",
+    "noResultContactsMessage": "尚未注册任何联系人.",
+    "resultDisclaimerTitle": "【重要】",
+    "resultDisclaimerText": "诊断结果不能替代医生、护理人员或其他医疗专业人员的专业诊断或治疗.此诊断仅供参考.如果您不确定如何判断或应对自己的症状，或者无论应用程序的结果如何，您都感到任何异常，请立即就医或呼叫救护车（119）.",
+    "restartButton": "重新开始",
+    "endButton": "结束",
+    "contactsTitle": "紧急联系人",
+    "addNewContactTitle": "添加新联系人",
+    "contactNamePlaceholder": "姓名",
+    "contactPhonePlaceholder": "电话号码",
+    "addContactButton": "添加联系人",
+    "noContactsMessage": "尚未注册任何联系人.",
+    "editQuestionTitle": "编辑流程图问题",
+    "exportFlowchartButton": "导出流程图",
+    "importFlowchartButton": "导入流程图",
+    "resetDataButton": "重置数据",
+    "editExistingQuestionTitle": "编辑现有问题",
+    "selectQuestionPlaceholder": "选择一个问题",
+    "questionIdLabel": "问题ID：",
+    "questionTextLabel": "问题/建议文本：",
+    "isResultNodeLabel": "将此设为结果节点",
+    "optionsLabel": "选项：",
+    "addOptionButton": "添加选项",
+    "deleteQuestionButton": "删除问题",
+    "saveQuestionButton": "保存问题",
+    "addNewQuestionTitle": "添加新问题",
+    "newQuestionIdLabel": "新问题ID：",
+    "newQuestionIdPlaceholder": "例如：step1",
+    "newQuestionTextPlaceholder": "新问题的文本",
+    "saveNewQuestionButton": "保存新问题",
+    "reorderQuestionsTitle": "重新排序问题",
+    "preventionTitle": "中暑预防和措施",
+    "prevention1Title": "① 频繁补充水分和盐分",
+    "prevention1Text": "在感到口渴之前，要经常喝水.当您出汗过多时，通过运动饮料或口服补液盐补充盐分也很重要.",
+    "prevention2Title": "② 穿凉爽的衣服",
+    "prevention2Text": "穿宽松、吸湿、快干的衣服.工作时穿空调服.建议在头盔上加装遮阳板.",
+    "prevention3Title": "③ 避暑方法",
+    "prevention3Text": "在一天中最热的时候（大约11:00-15:00）工作或WBGT值超过28时，要经常休息，例如每小时休息10分钟.在室内，适当使用风扇和空调，使室温不超过28°C.",
+    "prevention4Title": "④ 保持身体健康",
+    "prevention4Text": "当您身体不适时，例如睡眠不足或宿醉，您更容易中暑.每天要保证充足的休息和均衡的饮食.",
+    "prevention5Title": "⑤ 关心他人",
+    "prevention5Text": "身体不适的人尤其容易中暑.与周围的人交谈，并注意彼此的健康.",
+    "prevention6Title": "⑥ 不要忍耐",
+    "prevention6Text": "及早发现症状是中暑的关键.如果您因为看不见而忍耐，情况可能会变得严重.如果您感到身体有丝毫异常，请休息一下.",
+    "mainDisclaimer": "对于因使用本应用程序而造成的任何健康损害、损失或不利，我们概不负责.请您自行决定并负责使用本应用程序.",
+    "editContactButton": "编辑",
+    "deleteContactButton": "删除",
+    "saveChangesButton": "保存更改",
+    "confirmDeleteContact": "您确定要删除此联系人吗？",
+    "errorIdExists": "此问题ID已存在.请使用其他ID.",
+    "errorNodeNeedsOptions": "问题节点必须至少有一个选项，或另存为结果节点.",
+    "errorIdAndTextRequired": "问题ID和问题/建议文本为必填项.",
+    "confirmResetFlowchart": "您确定要将流程图数据重置为初始状态吗？此操作无法撤消.",
+    "confirmOverwriteFlowchart": "您确定要覆盖当前的流程图数据吗？",
+    "errorImportingFile": "加载或解析JSON文件失败.",
+    "flowchartImported": "流程图数据已导入！",
+    "flowchartReset": "流程图数据已重置！",
+    "questionSaved": "问题已成功保存！",
+    "newQuestionSaved": "新问题已成功保存！",
+    "questionDeleted": "问题已删除！",
+    "confirmDeleteQuestion": "您确定要删除问题“{id}”吗？",
+    "heatDangerStatusLoadingLocation": "正在获取位置...",
+    "heatDangerStatusLoadingWeather": "正在获取天气数据...",
+    "heatDangerStatusLocationError": "地理位置不可用",
+    "heatDangerStatusWeatherError": "获取天气数据失败",
+    "heatDangerStatusLocationPermissionDenied": "使用位置的权限被拒绝.",
+    "heatDangerStatusLocationUnavailable": "无法确定您的位置.",
+    "heatDangerStatusLocationTimeout": "获取位置超时.",
+    "heatDangerStatusUnknownError": "发生未知错误.",
+    "heatDangerAddressError": "无法获取地址",
+    "heatDangerAddressFetchError": "获取地址失败",
+    "heatDangerAddressFetchErrorDetail": "获取地址时发生错误",
+    "heatDangerCurrentTemp": "当前估计温度：{temp}°C",
+    "heatDangerCurrentHumidity": "湿度: {humidity}%",
+    "heatDangerCurrentWBGT": "WBGT: {wbgt}°C",
+    "heatDangerLevelAttention": "注意",
+    "heatDangerLevelWarning": "警惕",
+    "heatDangerLevelSevereWarning": "严重警惕",
+    "heatDangerLevelDanger": "危险",
+    "optionIconLabel": "图标：",
+    "optionIconNone": "无",
+    "optionTextPlaceholder": "选项文本",
+    "optionNextPlaceholder": "下一个问题ID",
+    "resultNodeInfo": "这是一个结果节点，因此没有选项.",
+    "errorNextNodeNotFound": "错误：找不到下一个项目（{id}）.请检查它是否存在于问题编辑器模式中.",
+    "inputNameAndPhone": "请输入姓名和电话号码."
+  }
+}

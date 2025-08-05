@@ -1,0 +1,154 @@
+{
+  "appName": "熱中症フローチャート＆連絡先",
+  "flowchart": {
+    "start": {
+      "question": "熱中症を疑う症状があるか.\n例：めまい、失神、筋肉痛、筋肉の硬直、大量の発汗、頭痛、不快感、吐き気、嘔吐、倦怠感、虚脱感、意識障害、けいれん、手足の運動障害、高体温その他異常",
+      "options": [
+        { "text": "ある", "next": "ある場合", "icon": "good.jpg" },
+        { "text": "ない", "next": "ない場合", "icon": "bad.jpg" }
+      ]
+    },
+    "ある場合": {
+      "question": "呼びかけには応じるか.\n",
+      "options": [
+        { "text": "応じる", "next": "応じる場合", "icon": "good.jpg" },
+        { "text": "応じない", "next": "応じない場合", "icon": "bad.jpg" },
+        { "text": "曖昧", "next": "曖昧な場合、自力で水分補給不可能", "icon": "confused.jpg" }
+      ]
+    },
+    "応じない場合": {
+      "isResult": true,
+      "question": "1．直ちに救急車を呼ぶこと.\n2.涼しい場所への避難、服をゆるめ身体を冷やすこと.\n3.重篤な場合は溺れないよう配慮しつつ直接水をかけるなど、とにかく冷やすこと."
+    },
+    "ない場合": {
+      "isResult": true,
+      "question": "一瞬でも熱中症かな？と感じたらすぐ身体を冷やして休憩しましょう."
+    },
+    "応じる場合": {
+      "question": "涼しい場所へ避難しつつ、水分を自力で接種できるか.",
+      "options": [
+        { "text": "自力で水分補給可能", "next": "自力で水分補給可能な場合", "icon": "good.jpg" },
+        { "text": "自力で水分補給不可能", "next": "曖昧な場合、自力で水分補給不可能", "icon": "bad.jpg" }
+      ]
+    },
+    "曖昧な場合、自力で水分補給不可能": {
+      "isResult": true,
+      "question": "1.救急車を呼ぶことも視野に入れ、原則医療機関へ向かうこと.\n2.涼しい場所への避難、服をゆるめ身体を冷やすこと.\n"
+    },
+    "自力で水分補給可能な場合": {
+      "question": "そのまま安静にして十分に休息を取り、その日の作業は休むこと.\n※一人にしないこと。もしくは数十分に一度程度様子を伺うこと.\n経過は良いですか？",
+      "options": [
+        { "text": "良い", "next": "帰ろう", "icon": "good.jpg" },
+        { "text": "変わらない、あるいは悪化した", "next": "救急車", "icon": "bad.jpg" }
+      ]
+    },
+    "救急車": {
+      "isResult": true,
+      "question": "熱中症の疑いが高いです。医療機関へ向かってください."
+    },
+    "帰ろう": {
+      "isResult": true,
+      "question": "今日は無理せず家に帰って安静にしましょう。ご安全に！"
+    }
+  },
+  "contacts": [
+    { "name": "甲田　収", "phone": "080-8986-0443" },
+    { "name": "三戸内科", "phone": "086-229-3331" }
+  ],
+  "ui": {
+    "heatDangerTitle": "今日の熱中症危険度",
+    "heatDangerLoading": "情報を取得中...",
+    "refreshButton": "更新",
+    "flowchartModeButton": "フローチャート",
+    "contactsModeButton": "連絡先",
+    "questionEditorModeButton": "質問編集",
+    "preventionModeButton": "予防と対策",
+    "resultSuggestion": "あなたへの提案は…",
+    "resultContactsTitle": "登録済みの緊急連絡先:",
+    "noResultContactsMessage": "まだ連絡先が登録されていません.",
+    "resultDisclaimerTitle": "【重要】",
+    "resultDisclaimerText": "診断結果は、医師、救急隊員、その他の医療専門家による専門的な診断や治療に代わるものでは決してありません。この診断はあくまで目安です。 症状の判断や対応に迷った場合、またはアプリの結果に関わらず、少しでも異常を感じたら、直ちに医療機関を受診するか、救急車（119番）を呼んでください.",
+    "restartButton": "最初から",
+    "endButton": "終了",
+    "contactsTitle": "緊急連絡先",
+    "addNewContactTitle": "新しい連絡先を追加",
+    "contactNamePlaceholder": "名前",
+    "contactPhonePlaceholder": "電話番号",
+    "addContactButton": "連絡先を追加",
+    "noContactsMessage": "まだ連絡先が登録されていません.",
+    "editQuestionTitle": "フローチャート質問編集",
+    "exportFlowchartButton": "フローチャートをエクスポート",
+    "importFlowchartButton": "フローチャートをインポート",
+    "resetDataButton": "データをリセット",
+    "editExistingQuestionTitle": "既存の質問を編集",
+    "selectQuestionPlaceholder": "質問を選択してください",
+    "questionIdLabel": "質問ID:",
+    "questionTextLabel": "質問文/提案文:",
+    "isResultNodeLabel": "結果ノードにする",
+    "optionsLabel": "選択肢:",
+    "addOptionButton": "選択肢を追加",
+    "deleteQuestionButton": "質問を削除",
+    "saveQuestionButton": "質問を保存",
+    "addNewQuestionTitle": "新しい質問を追加",
+    "newQuestionIdLabel": "新しい質問ID:",
+    "newQuestionIdPlaceholder": "例: step1",
+    "newQuestionTextPlaceholder": "新しい質問のテキスト",
+    "saveNewQuestionButton": "新しい質問を保存",
+    "reorderQuestionsTitle": "質問の並べ替え",
+    "preventionTitle": "熱中症の予防と対策",
+    "prevention1Title": "① こまめな水分・塩分補給",
+    "prevention1Text": "のどが渇く前に、こまめに水分を補給しましょう。汗をたくさんかいた時は、スポーツドリンクや経口補水液などで塩分も一緒に補給することが大切です.",
+    "prevention2Title": "② 涼しい服装を心がける",
+    "prevention2Text": "吸湿性や速乾性に優れた、ゆったりとした服装を心がけましょう。空調服を着て作業しましょう。ヘルメットに防暑タレを付けるのもおすすめです.",
+    "prevention3Title": "③ 暑さを避ける工夫",
+    "prevention3Text": "日中の特に暑い時間帯（11時～15時頃）の作業、WBGT値が28を超える場合は1時間に1度10分など細かな休憩を取りましょう。室内では、扇風機やエアコンを適切に利用して、室温が28℃を超えないように調整してください.",
+    "prevention4Title": "④ 体調管理を万全に",
+    "prevention4Text": "睡眠不足や二日酔いなど、体調が万全でない時は熱中症になりやすくなります。日頃から十分な休息をとり、バランスの良い食事を心がけましょう.",
+    "prevention5Title": "⑤ 周囲の人にも気を配る",
+    "prevention5Text": "体調の悪い方は特に熱中症になりやすいです。周りの人と声を掛け合い、お互いの体調に気を配りましょう.",
+    "prevention6Title": "⑥ 我慢しない",
+    "prevention6Text": "熱中症は自覚症状が早期発見のカギです。見た目ではわからなく我慢をしていたら重篤化してしまいます。少しでも身体に異変を感じたら休憩しましょう.",
+    "mainDisclaimer": "本アプリの利用により生じた、いかなる健康被害、損害、または不利益について、当方は一切の責任を負いかねます。利用者自身の判断と責任において本アプリをご利用ください.",
+    "editContactButton": "編集",
+    "deleteContactButton": "削除",
+    "saveChangesButton": "変更を保存",
+    "confirmDeleteContact": "この連絡先を削除しますか？",
+    "errorIdExists": "この質問IDは既に存在します。別のIDを使用してください.",
+    "errorNodeNeedsOptions": "質問ノードには少なくとも1つの選択肢が必要です。または、結果ノードとして保存してください.",
+    "errorIdAndTextRequired": "質問IDと質問文/提案文は必須です.",
+    "confirmResetFlowchart": "フローチャートデータを初期状態にリセットしますか？この操作は元に戻せません.",
+    "confirmOverwriteFlowchart": "現在のフローチャートデータを上書きしますか？",
+    "errorImportingFile": "JSONファイルの読み込みまたは解析に失敗しました.",
+    "flowchartImported": "フローチャートデータがインポートされました！",
+    "flowchartReset": "フローチャートデータがリセットされました！",
+    "questionSaved": "質問が正常に保存されました！",
+    "newQuestionSaved": "新しい質問が正常に保存されました！",
+    "questionDeleted": "質問が削除されました！",
+    "confirmDeleteQuestion": "本当に質問 '{id}' を削除しますか？",
+    "heatDangerStatusLoadingLocation": "位置情報を取得中...",
+    "heatDangerStatusLoadingWeather": "天気情報を取得中...",
+    "heatDangerStatusLocationError": "位置情報が利用できません",
+    "heatDangerStatusWeatherError": "天気情報の取得に失敗",
+    "heatDangerStatusLocationPermissionDenied": "位置情報の利用が許可されていません.",
+    "heatDangerStatusLocationUnavailable": "現在地を特定できませんでした.",
+    "heatDangerStatusLocationTimeout": "位置情報の取得がタイムアウトしました.",
+    "heatDangerStatusUnknownError": "不明なエラーが発生しました.",
+    "heatDangerAddressError": "住所が取得できませんでした",
+    "heatDangerAddressFetchError": "住所の取得に失敗しました",
+    "heatDangerAddressFetchErrorDetail": "住所の取得中にエラーが発生しました",
+    "heatDangerCurrentTemp": "気温: {temp}°C",
+    "heatDangerCurrentHumidity": "湿度: {humidity}%",
+    "heatDangerCurrentWBGT": "WBGT: {wbgt}°C",
+    "heatDangerLevelAttention": "注意",
+    "heatDangerLevelWarning": "警戒",
+    "heatDangerLevelSevereWarning": "厳重警戒",
+    "heatDangerLevelDanger": "危険",
+    "optionIconLabel": "アイコン:",
+    "optionIconNone": "なし",
+    "optionTextPlaceholder": "選択肢テキスト",
+    "optionNextPlaceholder": "次の質問ID",
+    "resultNodeInfo": "このノードは結果ノードなので、選択肢はありません.",
+    "errorNextNodeNotFound": "エラー: 次の項目が見つかりません ({id})。質問編集モードで存在するか確認してください.",
+    "inputNameAndPhone": "名前と電話番号を入力してください."
+  }
+}

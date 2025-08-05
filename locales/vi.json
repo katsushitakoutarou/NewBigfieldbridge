@@ -1,0 +1,154 @@
+{
+  "appName": "Sơ đồ quy trình say nắng & Danh bạ",
+  "flowchart": {
+    "start": {
+      "question": "Bạn có triệu chứng say nắng không?\nVí dụ: chóng mặt, ngất xỉu, đau cơ, cứng cơ, đổ mồ hôi nhiều, nhức đầu, buồn nôn, nôn, mệt mỏi, suy sụp, lú lẫn, co giật, suy giảm vận động tay chân, nhiệt độ cơ thể cao hoặc các bất thường khác.",
+      "options": [
+        { "text": "Có", "next": "symptoms_yes", "icon": "good.jpg" },
+        { "text": "Không", "next": "symptoms_no", "icon": "bad.jpg" }
+      ]
+    },
+    "symptoms_yes": {
+      "question": "Người đó có thể trả lời các cuộc gọi không?",
+      "options": [
+        { "text": "Có", "next": "responds_yes", "icon": "good.jpg" },
+        { "text": "Không", "next": "responds_no", "icon": "bad.jpg" },
+        { "text": "Mơ hồ", "next": "responds_vague", "icon": "confused.jpg" }
+      ]
+    },
+    "responds_no": {
+      "isResult": true,
+      "question": "1. Gọi xe cứu thương ngay lập tức.\n2. Di chuyển đến nơi thoáng mát, nới lỏng quần áo và làm mát cơ thể.\n3. Trong trường hợp nghiêm trọng, hãy đổ nước lên người, cẩn thận để họ không bị chết đuối và làm mát họ bằng mọi cách cần thiết."
+    },
+    "symptoms_no": {
+      "isResult": true,
+      "question": "Nếu bạn cảm thấy dù chỉ một chút giống như mình có thể bị say nắng, hãy làm mát cơ thể và nghỉ ngơi ngay lập tức."
+    },
+    "responds_yes": {
+      "question": "Người đó có thể tự uống nước sau khi di chuyển đến nơi thoáng mát không?",
+      "options": [
+        { "text": "Có, có thể tự uống", "next": "can_drink", "icon": "good.jpg" },
+        { "text": "Không, không thể tự uống", "next": "responds_vague", "icon": "bad.jpg" }
+      ]
+    },
+    "responds_vague": {
+      "isResult": true,
+      "question": "1. Cân nhắc gọi xe cứu thương và về nguyên tắc, hãy đến cơ sở y tế.\n2. Di chuyển đến nơi thoáng mát, nới lỏng quần áo và làm mát cơ thể."
+    },
+    "can_drink": {
+      "question": "Nghỉ ngơi yên tĩnh, nghỉ làm trong ngày.\n*Không để người đó một mình. Kiểm tra họ vài chục phút một lần.\nTình trạng của họ có cải thiện không?",
+      "options": [
+        { "text": "Có, đang cải thiện", "next": "go_home", "icon": "good.jpg" },
+        { "text": "Không thay đổi hoặc xấu đi", "next": "call_ambulance", "icon": "bad.jpg" }
+      ]
+    },
+    "call_ambulance": {
+      "isResult": true,
+      "question": "Có nghi ngờ cao về say nắng. Vui lòng đến cơ sở y tế."
+    },
+    "go_home": {
+      "isResult": true,
+      "question": "Hôm nay đừng gắng sức. Về nhà nghỉ ngơi. Giữ an toàn!"
+    }
+  },
+  "contacts": [
+    { "name": "Osamu Koda", "phone": "080-8986-0443" },
+    { "name": "Phòng khám nội khoa Mito", "phone": "086-229-3331" }
+  ],
+  "ui": {
+    "heatDangerTitle": "Rủi ro say nắng hôm nay",
+    "heatDangerLoading": "Đang tìm nạp thông tin...",
+    "refreshButton": "Làm mới",
+    "flowchartModeButton": "Sơ đồ quy trình",
+    "contactsModeButton": "Danh bạ",
+    "questionEditorModeButton": "Chỉnh sửa câu hỏi",
+    "preventionModeButton": "Phòng ngừa",
+    "resultSuggestion": "Gợi ý của chúng tôi cho bạn là...",
+    "resultContactsTitle": "Danh bạ khẩn cấp đã đăng ký:",
+    "noResultContactsMessage": "Chưa có danh bạ nào được đăng ký.",
+    "resultDisclaimerTitle": "【QUAN TRỌNG】",
+    "resultDisclaimerText": "Kết quả chẩn đoán không thể thay thế cho chẩn đoán hoặc điều trị chuyên nghiệp của bác sĩ, nhân viên y tế hoặc chuyên gia y tế khác. Chẩn đoán này chỉ là một hướng dẫn. Nếu bạn không chắc chắn về cách đánh giá hoặc ứng phó với các triệu chứng của mình, hoặc nếu bạn cảm thấy bất kỳ bất thường nào bất kể kết quả của ứng dụng, vui lòng đến gặp bác sĩ hoặc gọi xe cứu thương (119) ngay lập tức.",
+    "restartButton": "Bắt đầu lại",
+    "endButton": "Kết thúc",
+    "contactsTitle": "Danh bạ khẩn cấp",
+    "addNewContactTitle": "Thêm danh bạ mới",
+    "contactNamePlaceholder": "Tên",
+    "contactPhonePlaceholder": "Số điện thoại",
+    "addContactButton": "Thêm danh bạ",
+    "noContactsMessage": "Chưa có danh bạ nào được đăng ký.",
+    "editQuestionTitle": "Chỉnh sửa câu hỏi sơ đồ quy trình",
+    "exportFlowchartButton": "Xuất sơ đồ quy trình",
+    "importFlowchartButton": "Nhập sơ đồ quy trình",
+    "resetDataButton": "Đặt lại dữ liệu",
+    "editExistingQuestionTitle": "Chỉnh sửa câu hỏi hiện có",
+    "selectQuestionPlaceholder": "Chọn một câu hỏi",
+    "questionIdLabel": "ID câu hỏi:",
+    "questionTextLabel": "Văn bản câu hỏi/gợi ý:",
+    "isResultNodeLabel": "Đặt đây là nút kết quả",
+    "optionsLabel": "Tùy chọn:",
+    "addOptionButton": "Thêm tùy chọn",
+    "deleteQuestionButton": "Xóa câu hỏi",
+    "saveQuestionButton": "Lưu câu hỏi",
+    "addNewQuestionTitle": "Thêm câu hỏi mới",
+    "newQuestionIdLabel": "ID câu hỏi mới:",
+    "newQuestionIdPlaceholder": "ví dụ: step1",
+    "newQuestionTextPlaceholder": "Văn bản cho câu hỏi mới",
+    "saveNewQuestionButton": "Lưu câu hỏi mới",
+    "reorderQuestionsTitle": "Sắp xếp lại câu hỏi",
+    "preventionTitle": "Phòng ngừa và các biện pháp say nắng",
+    "prevention1Title": "① Bổ sung nước và muối thường xuyên",
+    "prevention1Text": "Uống nước thường xuyên, trước khi bạn cảm thấy khát. Khi bạn đổ mồ hôi nhiều, điều quan trọng là phải bổ sung muối cũng như với đồ uống thể thao hoặc dung dịch bù nước đường uống.",
+    "prevention2Title": "② Mặc quần áo mát mẻ",
+    "prevention2Text": "Mặc quần áo rộng rãi, thấm hút và nhanh khô. Mặc quần áo có điều hòa không khí khi làm việc. Cũng nên gắn tấm che nắng vào mũ bảo hiểm của bạn.",
+    "prevention3Title": "③ Cách tránh nóng",
+    "prevention3Text": "Nghỉ giải lao thường xuyên, chẳng hạn như 10 phút mỗi giờ, khi làm việc vào những thời điểm nóng nhất trong ngày (khoảng 11:00-15:00) hoặc khi giá trị WBGT vượt quá 28. Trong nhà, sử dụng quạt và máy điều hòa không khí một cách thích hợp để giữ nhiệt độ phòng không vượt quá 28°C.",
+    "prevention4Title": "④ Duy trì sức khỏe tốt",
+    "prevention4Text": "Bạn có nhiều khả năng bị say nắng hơn khi bạn không có sức khỏe tốt, chẳng hạn như do thiếu ngủ hoặc nôn nao. Hãy nghỉ ngơi đầy đủ và ăn một chế độ ăn uống cân bằng hàng ngày.",
+    "prevention5Title": "⑤ Hãy quan tâm đến những người khác",
+    "prevention5Text": "Những người không cảm thấy khỏe đặc biệt dễ bị say nắng. Hãy nói chuyện với những người xung quanh bạn và quan tâm đến sức khỏe của nhau.",
+    "prevention6Title": "⑥ Đừng chịu đựng",
+    "prevention6Text": "Phát hiện sớm các triệu chứng là chìa khóa để phòng chống say nắng. Nếu bạn cố gắng chịu đựng vì các triệu chứng không rõ ràng, tình trạng có thể trở nên nghiêm trọng. Hãy nghỉ ngơi ngay nếu bạn cảm thấy có bất kỳ điều gì bất thường trong cơ thể.",
+    "mainDisclaimer": "Chúng tôi không chịu trách nhiệm cho bất kỳ thiệt hại, mất mát hoặc bất lợi nào về sức khỏe do việc sử dụng ứng dụng này gây ra. Vui lòng sử dụng ứng dụng này theo quyết định và trách nhiệm của riêng bạn.",
+    "editContactButton": "Chỉnh sửa",
+    "deleteContactButton": "Xóa",
+    "saveChangesButton": "Lưu thay đổi",
+    "confirmDeleteContact": "Bạn có chắc chắn muốn xóa liên hệ này không?",
+    "errorIdExists": "ID câu hỏi này đã tồn tại. Vui lòng sử dụng một ID khác.",
+    "errorNodeNeedsOptions": "Một nút câu hỏi phải có ít nhất một tùy chọn hoặc được lưu dưới dạng nút kết quả.",
+    "errorIdAndTextRequired": "ID câu hỏi và Văn bản câu hỏi/gợi ý là bắt buộc.",
+    "confirmResetFlowchart": "Bạn có chắc chắn muốn đặt lại dữ liệu sơ đồ quy trình về trạng thái ban đầu không? Hành động này không thể hoàn tác.",
+    "confirmOverwriteFlowchart": "Bạn có chắc chắn muốn ghi đè lên dữ liệu sơ đồ quy trình hiện tại không?",
+    "errorImportingFile": "Không thể tải hoặc phân tích cú pháp tệp JSON.",
+    "flowchartImported": "Dữ liệu sơ đồ quy trình đã được nhập!",
+    "flowchartReset": "Dữ liệu sơ đồ quy trình đã được đặt lại!",
+    "questionSaved": "Câu hỏi đã được lưu thành công!",
+    "newQuestionSaved": "Câu hỏi mới đã được lưu thành công!",
+    "questionDeleted": "Câu hỏi đã bị xóa!",
+    "confirmDeleteQuestion": "Bạn có chắc chắn muốn xóa câu hỏi '{id}' không?",
+    "heatDangerStatusLoadingLocation": "Đang lấy vị trí...",
+    "heatDangerStatusLoadingWeather": "Đang tìm nạp dữ liệu thời tiết...",
+    "heatDangerStatusLocationError": "Không có định vị địa lý",
+    "heatDangerStatusWeatherError": "Không thể tìm nạp dữ liệu thời tiết",
+    "heatDangerStatusLocationPermissionDenied": "Quyền sử dụng vị trí đã bị từ chối.",
+    "heatDangerStatusLocationUnavailable": "Không thể xác định vị trí của bạn.",
+    "heatDangerStatusLocationTimeout": "Hết thời gian chờ trong khi lấy vị trí.",
+    "heatDangerStatusUnknownError": "Đã xảy ra lỗi không xác định.",
+    "heatDangerAddressError": "Không thể lấy địa chỉ",
+    "heatDangerAddressFetchError": "Không thể tìm nạp địa chỉ",
+    "heatDangerAddressFetchErrorDetail": "Đã xảy ra lỗi trong khi tìm nạp địa chỉ",
+    "heatDangerCurrentTemp": "Nhiệt độ: {temp}°C",
+    "heatDangerCurrentHumidity": "Độ ẩm: {humidity}%",
+    "heatDangerCurrentWBGT": "WBGT: {wbgt}°C",
+    "heatDangerLevelAttention": "Thận trọng",
+    "heatDangerLevelWarning": "Cảnh báo",
+    "heatDangerLevelSevereWarning": "Cảnh báo nghiêm trọng",
+    "heatDangerLevelDanger": "Nguy hiểm",
+    "optionIconLabel": "Biểu tượng:",
+    "optionIconNone": "Không có",
+    "optionTextPlaceholder": "Văn bản tùy chọn",
+    "optionNextPlaceholder": "ID câu hỏi tiếp theo",
+    "resultNodeInfo": "Đây là một nút kết quả, vì vậy nó không có tùy chọn.",
+    "errorNextNodeNotFound": "Lỗi: Không tìm thấy mục tiếp theo ({id}). Vui lòng kiểm tra xem nó có tồn tại ở chế độ chỉnh sửa câu hỏi không.",
+    "inputNameAndPhone": "Vui lòng nhập tên và số điện thoại."
+  }
+}

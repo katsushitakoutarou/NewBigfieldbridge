@@ -1,0 +1,154 @@
+{
+  "appName": "Heatstroke Flowchart & Contacts",
+  "flowchart": {
+    "start": {
+      "question": "Do you have symptoms of heatstroke?\nExamples: dizziness, fainting, muscle aches, muscle stiffness, heavy sweating, headache, nausea, vomiting, fatigue, collapse, confusion, convulsions, limb motor impairment, high body temperature, or other abnormalities.",
+      "options": [
+        { "text": "Yes", "next": "symptoms_yes", "icon": "good.jpg" },
+        { "text": "No", "next": "symptoms_no", "icon": "bad.jpg" }
+      ]
+    },
+    "symptoms_yes": {
+      "question": "Can the person respond to calls?",
+      "options": [
+        { "text": "Yes", "next": "responds_yes", "icon": "good.jpg" },
+        { "text": "No", "next": "responds_no", "icon": "bad.jpg" },
+        { "text": "Vague", "next": "responds_vague", "icon": "confused.jpg" }
+      ]
+    },
+    "responds_no": {
+      "isResult": true,
+      "question": "1. Call an ambulance immediately.\n2. Move to a cool place, loosen clothing, and cool the body.\n3. In severe cases, pour water on the person, taking care not to let them drown, and cool them down by any means necessary."
+    },
+    "symptoms_no": {
+      "isResult": true,
+      "question": "If you feel even a little like you might have heatstroke, cool your body and rest immediately."
+    },
+    "responds_yes": {
+      "question": "Can the person drink water on their own after moving to a cool place?",
+      "options": [
+        { "text": "Yes, can drink on their own", "next": "can_drink", "icon": "good.jpg" },
+        { "text": "No, cannot drink on their own", "next": "responds_vague", "icon": "bad.jpg" }
+      ]
+    },
+    "responds_vague": {
+      "isResult": true,
+      "question": "1. Consider calling an ambulance and, in principle, go to a medical institution.\n2. Move to a cool place, loosen clothing, and cool the body."
+    },
+    "can_drink": {
+      "question": "Rest quietly, take a break from work for the day.\n*Do not leave the person alone. Check on them every few tens of minutes.\nIs their condition improving?",
+      "options": [
+        { "text": "Yes, improving", "next": "go_home", "icon": "good.jpg" },
+        { "text": "No change or worsening", "next": "call_ambulance", "icon": "bad.jpg" }
+      ]
+    },
+    "call_ambulance": {
+      "isResult": true,
+      "question": "There is a high suspicion of heatstroke. Please go to a medical institution."
+    },
+    "go_home": {
+      "isResult": true,
+      "question": "Don't push yourself today. Go home and rest. Stay safe!"
+    }
+  },
+  "contacts": [
+    { "name": "Osamu Koda", "phone": "080-8986-0443" },
+    { "name": "Mito Internal Medicine Clinic", "phone": "086-229-3331" }
+  ],
+  "ui": {
+    "heatDangerTitle": "Today's Heatstroke Risk",
+    "heatDangerLoading": "Fetching information...",
+    "refreshButton": "Refresh",
+    "flowchartModeButton": "Flowchart",
+    "contactsModeButton": "Contacts",
+    "questionEditorModeButton": "Edit Questions",
+    "preventionModeButton": "Prevention",
+    "resultSuggestion": "Our suggestion for you is...",
+    "resultContactsTitle": "Registered Emergency Contacts:",
+    "noResultContactsMessage": "No contacts have been registered yet.",
+    "resultDisclaimerTitle": "【IMPORTANT】",
+    "resultDisclaimerText": "The diagnosis results are not a substitute for professional diagnosis or treatment by a doctor, paramedic, or other medical professional. This diagnosis is only a guide. If you are unsure about how to judge or respond to your symptoms, or if you feel any abnormality regardless of the app's results, please see a doctor or call an ambulance (119) immediately.",
+    "restartButton": "Start Over",
+    "endButton": "End",
+    "contactsTitle": "Emergency Contacts",
+    "addNewContactTitle": "Add New Contact",
+    "contactNamePlaceholder": "Name",
+    "contactPhonePlaceholder": "Phone Number",
+    "addContactButton": "Add Contact",
+    "noContactsMessage": "No contacts have been registered yet.",
+    "editQuestionTitle": "Edit Flowchart Questions",
+    "exportFlowchartButton": "Export Flowchart",
+    "importFlowchartButton": "Import Flowchart",
+    "resetDataButton": "Reset Data",
+    "editExistingQuestionTitle": "Edit Existing Question",
+    "selectQuestionPlaceholder": "Select a question",
+    "questionIdLabel": "Question ID:",
+    "questionTextLabel": "Question/Suggestion Text:",
+    "isResultNodeLabel": "Make this a result node",
+    "optionsLabel": "Options:",
+    "addOptionButton": "Add Option",
+    "deleteQuestionButton": "Delete Question",
+    "saveQuestionButton": "Save Question",
+    "addNewQuestionTitle": "Add New Question",
+    "newQuestionIdLabel": "New Question ID:",
+    "newQuestionIdPlaceholder": "e.g., step1",
+    "newQuestionTextPlaceholder": "Text for the new question",
+    "saveNewQuestionButton": "Save New Question",
+    "reorderQuestionsTitle": "Reorder Questions",
+    "preventionTitle": "Heatstroke Prevention and Measures",
+    "prevention1Title": "① Frequent Hydration and Salt Intake",
+    "prevention1Text": "Drink fluids frequently, before you feel thirsty. When you sweat a lot, it's important to replenish salt as well with sports drinks or oral rehydration solutions.",
+    "prevention2Title": "② Wear Cool Clothing",
+    "prevention2Text": "Wear loose-fitting clothing that is absorbent and quick-drying. Wear air-conditioned clothing when working. It is also recommended to attach a sunshade to your helmet.",
+    "prevention3Title": "③ Ways to Avoid the Heat",
+    "prevention3Text": "Take frequent breaks, such as 10 minutes every hour, when working during the hottest times of the day (around 11:00-15:00) or when the WBGT value exceeds 28. Indoors, use fans and air conditioners appropriately to keep the room temperature from exceeding 28°C.",
+    "prevention4Title": "④ Maintain Good Health",
+    "prevention4Text": "You are more likely to get heatstroke when you are not in good health, such as from lack of sleep or a hangover. Get enough rest and eat a balanced diet on a daily basis.",
+    "prevention5Title": "⑤ Be Mindful of Others",
+    "prevention5Text": "People who are not feeling well are particularly susceptible to heatstroke. Talk to those around you and be mindful of each other's health.",
+    "prevention6Title": "⑥ Don't Endure It",
+    "prevention6Text": "Early detection of symptoms is key to heatstroke. If you endure it because it's not visible, it can become serious. Take a break if you feel even the slightest abnormality in your body.",
+    "mainDisclaimer": "We are not responsible for any health damage, loss, or disadvantage caused by the use of this application. Please use this application at your own discretion and responsibility.",
+    "editContactButton": "Edit",
+    "deleteContactButton": "Delete",
+    "saveChangesButton": "Save Changes",
+    "confirmDeleteContact": "Are you sure you want to delete this contact?",
+    "errorIdExists": "This Question ID already exists. Please use a different ID.",
+    "errorNodeNeedsOptions": "A question node must have at least one option, or be saved as a result node.",
+    "errorIdAndTextRequired": "Question ID and Question/Suggestion Text are required.",
+    "confirmResetFlowchart": "Are you sure you want to reset the flowchart data to its initial state? This action cannot be undone.",
+    "confirmOverwriteFlowchart": "Are you sure you want to overwrite the current flowchart data?",
+    "errorImportingFile": "Failed to load or parse the JSON file.",
+    "flowchartImported": "Flowchart data has been imported!",
+    "flowchartReset": "Flowchart data has been reset!",
+    "questionSaved": "Question saved successfully!",
+    "newQuestionSaved": "New question saved successfully!",
+    "questionDeleted": "Question has been deleted!",
+    "confirmDeleteQuestion": "Are you sure you want to delete the question '{id}'?",
+    "heatDangerStatusLoadingLocation": "Getting location...",
+    "heatDangerStatusLoadingWeather": "Fetching weather data...",
+    "heatDangerStatusLocationError": "Geolocation is not available",
+    "heatDangerStatusWeatherError": "Failed to fetch weather data",
+    "heatDangerStatusLocationPermissionDenied": "Permission to use location was denied.",
+    "heatDangerStatusLocationUnavailable": "Could not determine your location.",
+    "heatDangerStatusLocationTimeout": "Timed out while getting location.",
+    "heatDangerStatusUnknownError": "An unknown error occurred.",
+    "heatDangerAddressError": "Could not get address",
+    "heatDangerAddressFetchError": "Failed to fetch address",
+    "heatDangerAddressFetchErrorDetail": "An error occurred while fetching the address",
+    "heatDangerCurrentTemp": "Temperature: {temp}°C",
+    "heatDangerCurrentHumidity": "Humidity: {humidity}%",
+    "heatDangerCurrentWBGT": "WBGT: {wbgt}°C",
+    "heatDangerLevelAttention": "Caution",
+    "heatDangerLevelWarning": "Alert",
+    "heatDangerLevelSevereWarning": "Severe Alert",
+    "heatDangerLevelDanger": "Danger",
+    "optionIconLabel": "Icon:",
+    "optionIconNone": "None",
+    "optionTextPlaceholder": "Option text",
+    "optionNextPlaceholder": "Next question ID",
+    "resultNodeInfo": "This is a result node, so it has no options.",
+    "errorNextNodeNotFound": "Error: Next item not found ({id}). Please check if it exists in the question editor mode.",
+    "inputNameAndPhone": "Please enter a name and phone number."
+  }
+}
