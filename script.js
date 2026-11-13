@@ -54,8 +54,10 @@ const allLanguageData = {
       }
     },
     "contacts": [
-      { "name": "甲田収", "phone": "080-8986-0443" },
-      { "name": "三戸内科", "phone": "086-229-3331" }
+      { "name": "所長：樋口裕則", "phone": "080-6337-5996" },
+      { "name": "所員：勝下晃太郎", "phone": "080-8986-0446" },
+      { "name": "判断に困る時", "phone": "#7119" },
+      { "name": "緊急内科：済生会病院", "phone": "086-287-8655" }
     ],
     "ui": {
       "heatDangerTitle": "今日の熱中症危険度",
@@ -208,8 +210,10 @@ const allLanguageData = {
       }
     },
     "contacts": [
-      { "name": "Osamu Koda", "phone": "080-8986-0443" },
-      { "name": "Mito Internal Medicine Clinic", "phone": "086-229-3331" }
+      { "name": "Director: Hironori Higuchi", "phone": "080-6337-5996" },
+      { "name": "Staff: Kotaro Katsushita", "phone": "080-8986-0446" },
+      { "name": "Medical Consultation (Unsure if emergency)", "phone": "#7119" },
+      { "name": "Emergency Internal Medicine: Saiseikai Hospital", "phone": "086-287-8655" }
     ],
     "ui": {
       "heatDangerTitle": "Today's Heatstroke Risk",
@@ -362,8 +366,10 @@ const allLanguageData = {
       }
     },
     "contacts": [
-      { "name": "甲田修", "phone": "080-8986-0443" },
-      { "name": "三户内科", "phone": "086-229-3331" }
+      { "name": "所长：樋口裕则", "phone": "080-6337-5996" },
+      { "name": "职员：胜下晃太郎", "phone": "080-8986-0446" },
+      { "name": "无法判断是否需要就医时", "phone": "#7119" },
+      { "name": "急诊内科：济生会医院", "phone": "086-287-8655" }
     ],
     "ui": {
       "heatDangerTitle": "今日中暑风险",
@@ -516,8 +522,10 @@ const allLanguageData = {
       }
     },
     "contacts": [
-      { "name": "Osamu Koda", "phone": "080-8986-0443" },
-      { "name": "Phòng khám nội khoa Mito", "phone": "086-229-3331" }
+      { "name": "Trưởng văn phòng: Hironori Higuchi", "phone": "080-6337-5996" },
+      { "name": "Nhân viên: Kotaro Katsushita", "phone": "080-8986-0446" },
+      { "name": "Khi phân vân không biết nên đi bệnh viện hay không", "phone": "#7119" },
+      { "name": "Nội khoa cấp cứu: Bệnh viện Saiseikai", "phone": "086-287-8655" }
     ],
     "ui": {
       "heatDangerTitle": "Rủi ro say nắng hôm nay",
